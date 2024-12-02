@@ -14,6 +14,7 @@ Installation instructions...
 ### Prerequisites
 
 - [numpy](https://numpy.org)
+- [scipy](https://scipy.org)
 
 ## Running the tests
 
