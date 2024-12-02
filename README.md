@@ -20,12 +20,6 @@ Installation instructions...
 
 ### Sample Tests
 
-## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
 
 ## Authors
 
@@ -35,9 +29,9 @@ Installation instructions...
 
 ## License
 
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
+This project is licensed under the [MIT](LICENSE.md)
+License - see the [LICENSE.md](LICENSE.md) file for
+details.
 
 ## Acknowledgments
 
