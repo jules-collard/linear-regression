@@ -26,7 +26,7 @@ Installation instructions...
 
   - **Jules Lanari-Collard** - [jules-collard](https://github.com/jules-collard)
   - **Brendan Cao** - [RadhSlayer](https://github.com/radhslayer)
-  - **Diego Urdapilleta**
+  - **Diego Urdapilleta** - [dup0630](https://github.com/dup0630)
 
 ## License
 
