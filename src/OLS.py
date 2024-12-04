@@ -85,9 +85,23 @@ class Tester:
         lower_bounds = predictions - t_critical * se_pred
         upper_bounds = predictions + t_critical * se_pred
         return predictions, lower_bounds, upper_bounds
+    
+    def print_coefficient_summary(self):
+        if not self.ols.fitted:
+            raise ValueError("Model is not yet fitted.")
+        
+        t_stats, p_values, significant = self.t_test()
+    
+        print("COEFFICIENT SUMMARY TABLE (Significance level 0.05)")
+        print(f"{'Variable':<15}{'Estimated Coefficient':<25}{'T statistic':<15}{'P-value':<10}{'Significant':<10}")
+        print(f"{'Intercept':<15}{self.ols.beta_hat[0]:<25.5f}{t_stats[0]:<15.5f}{p_values[0]:<10.5f}{str(significant[0]):<10}")
+        for i in range(1, self.ols.p):
+            print(f"{f'x{i}':<15}{self.ols.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<10}")
 
 
-def main():
+
+
+def main(): # usage code for testing / can add the examples to the docs
     
     #can fix the np.seed to have consistent results
     X = np.random.rand(100, 2)  
@@ -96,7 +110,7 @@ def main():
     # Fit the OLS
     ols = OLSRegression(X, y)
     ols.fit()
-    print("Beta coefficients:", ols.beta_hat)
+    # print("Beta coefficients:", ols.beta_hat)
 
     
     tester = Tester(ols)
@@ -122,6 +136,10 @@ def main():
     predictions, lower_bounds, upper_bounds = tester.prediction_intervals(X_new)
     print("Predictions:", predictions)
     print("Prediction intervals:", np.column_stack((lower_bounds, upper_bounds)))
+
+    #summary function
+    tester.print_coefficient_summary()
+    
 
 if __name__ == '__main__':
     main()
