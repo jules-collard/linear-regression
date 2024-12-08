@@ -32,10 +32,15 @@ class RegressionModel(ABC):
         X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new))
         return X_new @ self.beta_hat
     
-    # TO IMPLEMENT
     @abstractmethod
     def summary(self):
         pass
+
+    def r2(self):
+        self.check_fitted()
+        y_bar = np.mean(self.y)
+        self.r2 = ((self.y_hat - y_bar).T @ (self.y_hat - y_bar)) / ((self.y - y_bar).T @ (self.y - y_bar))
+        self.adj_r2 = 1 - ((1 - self.r2) * (self.n / (self.n - self.p)))
 
     def check_fitted(self):
         if not self.fitted: raise ValueError('Model not fitted')
