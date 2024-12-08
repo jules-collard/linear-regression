@@ -8,6 +8,11 @@ class ConfidenceInterval:
         self.ub: float = upper_bound
         self.coverage: float = coverage
 
+    def __init__(self, lower_bound: float, upper_bound: float, coverage: float):
+        self.lb: float = lower_bound
+        self.ub: float = upper_bound
+        self.coverage: float = coverage
+    
     def __str__(self):
         return f"{self.coverage*100}% Confidence Interval: \n [{self.lb}, {self.ub}]"
     

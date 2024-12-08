@@ -1,10 +1,12 @@
 import numpy as np
 from scipy.stats import t, f
 from abc import ABC, abstractmethod
+from confints import ConfidenceInterval
 
 class RegressionModel(ABC):
 
     def __init__(self, X: np.ndarray, y: np.ndarray, intercept=True):
+        self.intercept = intercept
         self.fitted = False
         # Data
         self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if intercept else X
@@ -29,7 +31,7 @@ class RegressionModel(ABC):
 
     def predict(self, X_new):
         self.check_fitted()
-        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new))
+        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if self.intercept else X_new
         return X_new @ self.beta_hat
     
     @abstractmethod
@@ -47,7 +49,7 @@ class RegressionModel(ABC):
         
 
 #implementation uses numpy for basic matrix operations.
-#Also uses scipy to determine the quantiles of the t and f distribution (could be done from scratch but is not the focus of the project, imo)
+#Also uses scipy to determine the quantiles of the t and f distribution
 class OLSModel(RegressionModel):
     
     def __init__(self, X, y, intercept=True):
@@ -68,9 +70,26 @@ class OLSModel(RegressionModel):
     def get_covariance_matrix(self):
         self.check_fitted()
         return self.var_beta
+    
+    def summary(self):
+        self.check_fitted()
+        infer = OLS_Inference(self)
+        
+        t_stats, p_values, significant = infer.t_test()
+        confidences = infer.confidence_intervals()
 
+        print("COEFFICIENT SUMMARY TABLE (Significance level 0.05)")
+        print(f"{'Variable':<15}{'Estimated Coefficient':<25}{'T statistic':<15}{'P-value':<10}{'Significant':<13}{'Lower Bound ':<13}{'Upper Bound': <13}{'Coverage Level':<20}")
+        if(self.intercept):
+            print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}{t_stats[0]:<15.5f}{p_values[0]:<10.5f}{str(significant[0]):<13}{confidences[0].lb:<15.5f}{confidences[0].ub:<13.5f}{confidences[0].coverage * 100:<15}")
+            for i in range( 1, self.p ): 
+                print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<13}{confidences[i].lb:<15.5f}{confidences[i].ub:<13.5f}{confidences[i].coverage * 100:<15}")
+        else:
+            for i in range(self.p ): 
+                print(f"{f'x{i}':<15}{self.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<13}{confidences[i].lb:<15.5f}{confidences[i].ub:<13.5f}{confidences[i].coverage * 100:<15}")
 
-class Tester:
+#chapter 3
+class OLS_Inference:
     def __init__(self, ols: OLSModel):
         ols.check_fitted()
         self.ols = ols
@@ -81,7 +100,12 @@ class Tester:
         t_critical = t.ppf(1 - alpha / 2, self.ols.n - self.ols.p)
         lower_bounds = self.ols.beta_hat - t_critical * se_beta
         upper_bounds = self.ols.beta_hat + t_critical * se_beta
-        return np.column_stack((lower_bounds, upper_bounds))
+        #return np.column_stack((lower_bounds, upper_bounds))
+        intervals = []
+        for lb, ub in zip(lower_bounds, upper_bounds):
+            intervals.append(ConfidenceInterval(lb,ub, 1-alpha))
+        
+        return intervals
 
     def t_statistics(self, hypothesized_values=None): 
         if hypothesized_values is None:
@@ -99,7 +123,7 @@ class Tester:
         significant = p_values < alpha
         return t_stats, p_values, significant
 
-
+    #General F-test - can set the constraints as wanted
     def f_test(self, R, r):
         # F-test for H0: Rβ = r
         R_beta_hat = R @ self.ols.beta_hat - r
@@ -108,10 +132,16 @@ class Tester:
         F_stat /= self.ols.sigma_squared
         p_value = 1 - f.cdf(F_stat, R.shape[0], self.ols.n - self.ols.p)
         return F_stat, p_value
+    
+    #The more commonly used f-test to test if the model with only the intercept is correct
+    def f_test_intercept_only(self):
+        R = np.eye(self.ols.p - 1, self.ols.p)  # Test all coefficients but intercept
+        r = np.zeros(self.ols.p - 1)
+        return self.f_test(R, r)
 
-    def prediction_intervals(self, X_new, alpha=0.05):
+    def prediction_intervals(self, X_new :np.ndarray, alpha=0.05):
         predictions = self.ols.predict(X_new)
-        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new))  
+        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new))  if self.ols.intercept else X_new
         XtX_inv = np.linalg.inv(self.ols.X.T @ self.ols.X)
         #h = np.array([x @ np.linalg.inv(self.ols.X.T @ self.ols.X) @ x.T for x in X_new])
         h = np.einsum('ij,jk,ik->i', X_new, XtX_inv, X_new)  # ChatGPT's optimization for the above line of code which is otherwise too slow
@@ -121,17 +151,6 @@ class Tester:
         upper_bounds = predictions + t_critical * se_pred
         return predictions, lower_bounds, upper_bounds
     
-    def summary(self):
-        if not self.ols.fitted:
-            raise ValueError("Model is not yet fitted.")
-        
-        t_stats, p_values, significant = self.t_test()
-    
-        print("COEFFICIENT SUMMARY TABLE (Significance level 0.05)")
-        print(f"{'Variable':<15}{'Estimated Coefficient':<25}{'T statistic':<15}{'P-value':<10}{'Significant':<10}")
-        print(f"{'Intercept':<15}{self.ols.beta_hat[0]:<25.5f}{t_stats[0]:<15.5f}{p_values[0]:<10.5f}{str(significant[0]):<10}")
-        for i in range(1, self.ols.p):
-            print(f"{f'x{i}':<15}{self.ols.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<10}")
 
 
 def main(): # usage code for testing / can add the examples to the docs
@@ -145,10 +164,12 @@ def main(): # usage code for testing / can add the examples to the docs
     ols.fit()
     print("Beta coefficients:", ols.beta_hat)
 
-    tester = Tester(ols)
+    tester = OLS_Inference(ols)
 
     # Confidence intervals
-    print("Confidence intervals:", tester.confidence_intervals())
+    #print("Confidence intervals:", str(interval) for interval in tester.confidence_intervals())
+    for interval in tester.confidence_intervals():
+        print(interval)
 
     # t-tests
     t_stats, p_values, significant = tester.t_test()
@@ -157,9 +178,7 @@ def main(): # usage code for testing / can add the examples to the docs
     print("Significant coefficients:", significant)
 
     # F-test
-    R = np.eye(ols.p - 1, ols.p)  # Test all coefficients but intercept
-    r = np.zeros(ols.p - 1)
-    F_stat, F_p_value = tester.f_test(R, r)
+    F_stat, F_p_value = tester.f_test_intercept_only()
     print("F-statistic:", F_stat)
     print("F-test p-value:", F_p_value)
 
@@ -170,7 +189,7 @@ def main(): # usage code for testing / can add the examples to the docs
     print("Prediction intervals:", np.column_stack((lower_bounds, upper_bounds)))
 
     #summary function
-    tester.print_coefficient_summary()
+    ols.summary()
 
 if __name__ == "__main__":
     main()
