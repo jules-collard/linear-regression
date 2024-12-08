@@ -6,27 +6,36 @@ class RegressionModel(ABC):
 
     def __init__(self, X: np.ndarray, y: np.ndarray, intercept=True):
         self.fitted = False
+        # Data
         self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if intercept else X
         self.y: np.ndarray = y
         self.n, self.p = self.X.shape
+
+        # Model Output
+        self.beta_hat: np.ndarray = None
+        self.residuals: np.ndarray = None
+        self.y_hat: np.ndarray = None
+
+        # Diagnostics
+        self.aic: float = None
+        self.bic: float = None
+        self.r2: float = None
+        self.adj_r2: float = None
 
     # Fits model to data
     @abstractmethod
     def fit(self):
         pass
+
+    def predict(self, X_new):
+        self.check_fitted()
+        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new))
+        return X_new @ self.beta_hat
     
     # TO IMPLEMENT
-    """ @abstractmethod
-    def summary(self) -> str:
-        pass
-
     @abstractmethod
-    def get_aic(self) -> float:
+    def summary(self):
         pass
-
-    @abstractmethod
-    def get_bic(self) -> float:
-        pass """
 
     def check_fitted(self):
         if not self.fitted: raise ValueError('Model not fitted')
@@ -38,9 +47,6 @@ class OLSModel(RegressionModel):
     
     def __init__(self, X, y, intercept=True):
         RegressionModel.__init__(self, X, y, intercept=intercept)
-        self.beta_hat: np.ndarray = None
-        self.residuals: np.ndarray = None
-        self.y_hat: np.ndarray = None
         self.sigma_squared: float = None
         self.var_beta = None #estimated variance of betahat
 
@@ -57,11 +63,6 @@ class OLSModel(RegressionModel):
     def get_covariance_matrix(self):
         self.check_fitted()
         return self.var_beta
-
-    def predict(self, X_new):
-        self.check_fitted()
-        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new))
-        return X_new @ self.beta_hat
 
 
 class Tester:
@@ -115,7 +116,7 @@ class Tester:
         upper_bounds = predictions + t_critical * se_pred
         return predictions, lower_bounds, upper_bounds
     
-    def print_coefficient_summary(self):
+    def summary(self):
         if not self.ols.fitted:
             raise ValueError("Model is not yet fitted.")
         
