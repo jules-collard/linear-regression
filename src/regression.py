@@ -48,7 +48,7 @@ class RegressionModel(ABC):
         if not self.fitted: raise ValueError('Model not fitted')
         
 
-#implementation uses numpy for basic matrix operations.
+#Implementation uses numpy for basic matrix operations.
 #Also uses scipy to determine the quantiles of the t and f distribution
 class OLSModel(RegressionModel):
     
@@ -71,12 +71,36 @@ class OLSModel(RegressionModel):
         self.check_fitted()
         return self.var_beta
     
+    def hat_matrix(self):
+        self.check_fitted()
+        XtX_inv = np.linalg.inv(self.X.T @ self.X)
+        H = self.X @ XtX_inv @ self.X.T
+        return H
+    
+    def annihilator_matrix(self):
+        hat = self.hat_matrix()
+        return np.eye(hat.shape[0], hat.shape[1]) - hat
+
+    def leverages(self):
+        self.check_fitted()
+        H = self.hat_matrix()
+        return np.diag(H)
+
+    def standardized_residuals(self):
+        self.check_fitted()
+        h = self.leverages()  # leverage values
+        e = self.residuals  # residuals
+        se = np.sqrt(self.sigma_squared * (1 - h))  # standard error
+        standardized_residuals = e / se
+        return standardized_residuals
+    
+    
     def summary(self):
         self.check_fitted()
         infer = OLS_Inference(self)
         
         t_stats, p_values, significant = infer.t_test()
-        confidences = infer.confidence_intervals()
+        confidences = infer.confidence_intervals_beta()
 
         print("COEFFICIENT SUMMARY TABLE (Significance level 0.05)")
         print(f"{'Variable':<15}{'Estimated Coefficient':<25}{'T statistic':<15}{'P-value':<10}{'Significant':<13}{'Lower Bound ':<13}{'Upper Bound': <13}{'Coverage Level':<20}")
@@ -88,13 +112,12 @@ class OLSModel(RegressionModel):
             for i in range(self.p ): 
                 print(f"{f'x{i}':<15}{self.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<13}{confidences[i].lb:<15.5f}{confidences[i].ub:<13.5f}{confidences[i].coverage * 100:<15}")
 
-#chapter 3
 class OLS_Inference:
     def __init__(self, ols: OLSModel):
         ols.check_fitted()
         self.ols = ols
 
-    def confidence_intervals(self, alpha=0.05):
+    def confidence_intervals_beta(self, alpha=0.05):
         var_beta = self.ols.get_covariance_matrix()
         se_beta = np.sqrt(np.diag(var_beta))
         t_critical = t.ppf(1 - alpha / 2, self.ols.n - self.ols.p)
@@ -149,7 +172,13 @@ class OLS_Inference:
         se_pred = np.sqrt(self.ols.sigma_squared * (1 + h))
         lower_bounds = predictions - t_critical * se_pred
         upper_bounds = predictions + t_critical * se_pred
-        return predictions, lower_bounds, upper_bounds
+        #return predictions, lower_bounds, upper_bounds
+
+        intervals = []
+        for pred, lb, ub in zip(predictions, lower_bounds, upper_bounds):
+            intervals.append(ConfidenceInterval(lb,ub, 1-alpha, estimate=pred))
+        
+        return predictions,intervals
     
 
 
@@ -167,9 +196,9 @@ def main(): # usage code for testing / can add the examples to the docs
     tester = OLS_Inference(ols)
 
     # Confidence intervals
-    #print("Confidence intervals:", str(interval) for interval in tester.confidence_intervals())
-    for interval in tester.confidence_intervals():
-        print(interval)
+    # print("Confidence intervals:")
+    # for interval in tester.confidence_intervals():
+    #     print(interval)
 
     # t-tests
     t_stats, p_values, significant = tester.t_test()
@@ -184,9 +213,11 @@ def main(): # usage code for testing / can add the examples to the docs
 
     # Prediction intervals
     X_new = np.array([[0.5, 0.5], [0.2, 0.8]])
-    predictions, lower_bounds, upper_bounds = tester.prediction_intervals(X_new)
+    predictions, intervals = tester.prediction_intervals(X_new)
     print("Predictions:", predictions)
-    print("Prediction intervals:", np.column_stack((lower_bounds, upper_bounds)))
+    print("Prediction intervals:")
+    for interval in intervals:
+        print(interval)
 
     #summary function
     ols.summary()
