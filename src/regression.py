@@ -9,7 +9,7 @@ class RegressionModel(ABC):
         self.intercept = intercept
         self.fitted = False
         # Data
-        self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if intercept else X
+        self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if self.intercept else X
         self.y: np.ndarray = y
         self.n, self.p = self.X.shape
 
@@ -34,9 +34,17 @@ class RegressionModel(ABC):
         X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if self.intercept else X_new
         return X_new @ self.beta_hat
     
-    @abstractmethod
     def summary(self):
-        pass
+        self.check_fitted()
+        print("COEFFICIENT SUMMARY TABLE")
+        if(self.intercept):
+            print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}")
+            for i in range( 1, self.p ): 
+                print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}")
+        else:
+            for i in range(self.p ): 
+                print(f"{f'x{i}':<15}{self.beta_hat[i]:<25.5f}")
+
 
     def r2(self):
         self.check_fitted()
@@ -180,7 +188,26 @@ class OLS_Inference:
         
         return predictions,intervals
     
+class WLSModel(RegressionModel):
+    
+    def __init__(self, X, y):
+        RegressionModel.__init__(self, X, y, intercept=True)
 
+    def fit(self):
+        # Fit OLS model
+        ols = OLSModel(self.X, self.y, intercept=False)
+        ols.fit()
+        resid_squared = np.array([e ** 2 for e in ols.residuals])
+
+        # Regress squared residuals against X to estimate weights
+        resid_ols = OLSModel(self.X, resid_squared, intercept=False)
+        resid_ols.fit()
+        W = np.diag([1/e for e in resid_ols.y_hat])
+
+        self.beta_hat = np.linalg.inv(self.X.T @ W @ self.X) @ self.X.T @ W @ self.y
+        self.y_hat = self.X @ self.beta_hat
+        self.residuals = self.y - self.y_hat
+        self.fitted = True
 
 def main(): # usage code for testing / can add the examples to the docs
     
@@ -222,5 +249,13 @@ def main(): # usage code for testing / can add the examples to the docs
     #summary function
     ols.summary()
 
+def test():
+    X = np.random.rand(100, 2)  
+    y = 3 + 2 * X[:, 0] + 4 * X[:, 1] + np.random.randn(100) * 0.5  # linear model with gaussian noise
+
+    mod = WLSModel(X, y)
+    mod.fit()
+    mod.summary()
+
 if __name__ == "__main__":
-    main()
+    test()
