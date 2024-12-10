@@ -138,6 +138,14 @@ class OLS_Inference:
         
         return intervals
 
+    def confidence_intervals_bonferroni(self, alpha=0.05):
+        
+        # Bonferroni correction
+        corrected_alpha = alpha / self.ols.p
+
+        return self.confidence_intervals_beta(corrected_alpha)
+    
+
     def t_statistics(self, hypothesized_values=None): 
         if hypothesized_values is None:
             hypothesized_values = np.zeros_like(self.ols.beta_hat) # default: b_j = 0, for all j
@@ -188,6 +196,27 @@ class OLS_Inference:
         
         return predictions,intervals
     
+    def confidence_intervals_mx(self, X_new: np.ndarray, alpha=0.05):
+        self.ols.check_fitted()
+        
+        predictions = self.ols.predict(X_new)
+        
+        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if self.ols.intercept else X_new
+        
+        XtX_inv = np.linalg.inv(self.ols.X.T @ self.ols.X)
+        h = np.einsum('ij,jk,ik->i', X_new, XtX_inv, X_new) 
+        t_critical = t.ppf(1 - alpha / 2, self.ols.n - self.ols.p)
+        se_mx = np.sqrt(self.ols.sigma_squared * h)
+        
+        lower_bounds = predictions - t_critical * se_mx
+        upper_bounds = predictions + t_critical * se_mx
+        
+        intervals = []
+        for pred, lb, ub in zip(predictions, lower_bounds, upper_bounds):
+            intervals.append(ConfidenceInterval(lb, ub, 1 - alpha, estimate=pred))
+        
+        return predictions, intervals
+    
 class WLSModel(RegressionModel):
     
     def __init__(self, X, y):
@@ -209,6 +238,7 @@ class WLSModel(RegressionModel):
         self.residuals = self.y - self.y_hat
         self.fitted = True
 
+#region test function
 def main(): # usage code for testing / can add the examples to the docs
     
     #can fix the np.seed to have consistent results
@@ -223,9 +253,9 @@ def main(): # usage code for testing / can add the examples to the docs
     tester = OLS_Inference(ols)
 
     # Confidence intervals
-    # print("Confidence intervals:")
-    # for interval in tester.confidence_intervals():
-    #     print(interval)
+    print("Confidence intervals:")
+    for interval in tester.confidence_intervals_bonferroni(0.025):
+        print(interval)
 
     # t-tests
     t_stats, p_values, significant = tester.t_test()
@@ -246,8 +276,14 @@ def main(): # usage code for testing / can add the examples to the docs
     for interval in intervals:
         print(interval)
 
+    _, intervals_mx = tester.confidence_intervals_mx(X_new)
+    print("Confidence intervals for m(x):")
+    for interval in intervals_mx:
+        print(interval)
+
     #summary function
     ols.summary()
+#endregion
 
 def test():
     X = np.random.rand(100, 2)  
