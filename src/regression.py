@@ -174,6 +174,8 @@ class OLS_Inference:
     
     #The more commonly used f-test to test if the model with only the intercept is correct
     def f_test_intercept_only(self):
+        if not self.ols.intercept:
+            raise ValueError("Model must include intercept.")
         R = np.eye(self.ols.p - 1, self.ols.p)  # Test all coefficients but intercept
         r = np.zeros(self.ols.p - 1)
         return self.f_test(R, r)
@@ -239,7 +241,7 @@ class WLSModel(RegressionModel):
         self.fitted = True
 
 #region test function
-def main(): # usage code for testing / can add the examples to the docs
+def test_OLS_stuff(): # usage code for testing / can add the examples to the docs
     
     #can fix the np.seed to have consistent results
     X = np.random.rand(100, 2)  
