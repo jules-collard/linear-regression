@@ -5,11 +5,10 @@ from confints import ConfidenceInterval
 
 class RegressionModel(ABC):
 
-    def __init__(self, X: np.ndarray, y: np.ndarray, intercept=True):
-        self.intercept = intercept
+    def __init__(self, X: np.ndarray, y: np.ndarray, add_intercept=True):
         self.fitted = False
         # Data
-        self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if self.intercept else X
+        self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if add_intercept else X
         self.y: np.ndarray = y
         self.n, self.p = self.X.shape
 
@@ -29,22 +28,17 @@ class RegressionModel(ABC):
     def fit(self):
         pass
 
-    def predict(self, X_new):
+    def predict(self, X_new, add_intercept=True):
         self.check_fitted()
-        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if self.intercept else X_new
+        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if add_intercept else X_new
         return X_new @ self.beta_hat
     
     def summary(self):
         self.check_fitted()
         print("COEFFICIENT SUMMARY TABLE")
-        if(self.intercept):
-            print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}")
-            for i in range( 1, self.p ): 
-                print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}")
-        else:
-            for i in range(self.p ): 
-                print(f"{f'x{i}':<15}{self.beta_hat[i]:<25.5f}")
-
+        print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}")
+        for i in range( 1, self.p ): 
+            print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}")
 
     def r2(self):
         self.check_fitted()
@@ -60,20 +54,21 @@ class RegressionModel(ABC):
 #Also uses scipy to determine the quantiles of the t and f distribution
 class OLSModel(RegressionModel):
     
-    def __init__(self, X, y, intercept=True):
-        RegressionModel.__init__(self, X, y, intercept=intercept)
+    def __init__(self, X, y, add_intercept=True):
+        RegressionModel.__init__(self, X, y, add_intercept=add_intercept)
         self.sigma_squared: float = None
-        self.var_beta = None #estimated variance of betahat
+        self.var_beta: np.ndarray = None # estimated variance of betahat
 
     # Calculate OLS estimator and resulting residuals
     def fit(self):
         XtX_inv = np.linalg.inv(self.X.T @ self.X)
         self.beta_hat = XtX_inv @ self.X.T @ self.y
-        self.y_hat = self.X @ self.beta_hat
+        self.fitted = True
+        
+        self.y_hat = self.predict(self.X, add_intercept=False)
         self.residuals = self.y - self.y_hat
         self.sigma_squared = (self.residuals.T @ self.residuals) / (self.n - self.p)
         self.var_beta = self.sigma_squared * XtX_inv
-        self.fitted = True
 
     def get_covariance_matrix(self):
         self.check_fitted()
@@ -112,13 +107,9 @@ class OLSModel(RegressionModel):
 
         print("COEFFICIENT SUMMARY TABLE (Significance level 0.05)")
         print(f"{'Variable':<15}{'Estimated Coefficient':<25}{'T statistic':<15}{'P-value':<10}{'Significant':<13}{'Lower Bound ':<13}{'Upper Bound': <13}{'Coverage Level':<20}")
-        if(self.intercept):
-            print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}{t_stats[0]:<15.5f}{p_values[0]:<10.5f}{str(significant[0]):<13}{confidences[0].lb:<15.5f}{confidences[0].ub:<13.5f}{confidences[0].coverage * 100:<15}")
-            for i in range( 1, self.p ): 
-                print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<13}{confidences[i].lb:<15.5f}{confidences[i].ub:<13.5f}{confidences[i].coverage * 100:<15}")
-        else:
-            for i in range(self.p ): 
-                print(f"{f'x{i}':<15}{self.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<13}{confidences[i].lb:<15.5f}{confidences[i].ub:<13.5f}{confidences[i].coverage * 100:<15}")
+        print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}{t_stats[0]:<15.5f}{p_values[0]:<10.5f}{str(significant[0]):<13}{confidences[0].lb:<15.5f}{confidences[0].ub:<13.5f}{confidences[0].coverage * 100:<15}")
+        for i in range( 1, self.p ): 
+            print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<13}{confidences[i].lb:<15.5f}{confidences[i].ub:<13.5f}{confidences[i].coverage * 100:<15}")
 
 class OLS_Inference:
     def __init__(self, ols: OLSModel):
@@ -174,15 +165,13 @@ class OLS_Inference:
     
     #The more commonly used f-test to test if the model with only the intercept is correct
     def f_test_intercept_only(self):
-        if not self.ols.intercept:
-            raise ValueError("Model must include intercept.")
         R = np.eye(self.ols.p - 1, self.ols.p)  # Test all coefficients but intercept
         r = np.zeros(self.ols.p - 1)
         return self.f_test(R, r)
 
-    def prediction_intervals(self, X_new :np.ndarray, alpha=0.05):
+    def prediction_intervals(self, X_new :np.ndarray, add_intercept = True, alpha=0.05):
         predictions = self.ols.predict(X_new)
-        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new))  if self.ols.intercept else X_new
+        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if add_intercept else X_new
         XtX_inv = np.linalg.inv(self.ols.X.T @ self.ols.X)
         #h = np.array([x @ np.linalg.inv(self.ols.X.T @ self.ols.X) @ x.T for x in X_new])
         h = np.einsum('ij,jk,ik->i', X_new, XtX_inv, X_new)  # ChatGPT's optimization for the above line of code which is otherwise too slow
@@ -198,12 +187,12 @@ class OLS_Inference:
         
         return predictions,intervals
     
-    def confidence_intervals_mx(self, X_new: np.ndarray, alpha=0.05):
+    def confidence_intervals_mx(self, X_new: np.ndarray, add_intercept=True, alpha=0.05):
         self.ols.check_fitted()
         
         predictions = self.ols.predict(X_new)
         
-        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if self.ols.intercept else X_new
+        X_new = np.hstack((np.ones((X_new.shape[0], 1)), X_new)) if add_intercept else X_new
         
         XtX_inv = np.linalg.inv(self.ols.X.T @ self.ols.X)
         h = np.einsum('ij,jk,ik->i', X_new, XtX_inv, X_new) 
@@ -219,26 +208,36 @@ class OLS_Inference:
         
         return predictions, intervals
     
+
 class WLSModel(RegressionModel):
-    
-    def __init__(self, X, y):
-        RegressionModel.__init__(self, X, y, intercept=True)
 
     def fit(self):
         # Fit OLS model
-        ols = OLSModel(self.X, self.y, intercept=False)
+        ols = OLSModel(self.X, self.y, add_intercept=False)
         ols.fit()
         resid_squared = np.array([e ** 2 for e in ols.residuals])
 
         # Regress squared residuals against X to estimate weights
-        resid_ols = OLSModel(self.X, resid_squared, intercept=False)
+        resid_ols = OLSModel(self.X, resid_squared, add_intercept=False)
         resid_ols.fit()
         W = np.diag([1/e for e in resid_ols.y_hat])
 
         self.beta_hat = np.linalg.inv(self.X.T @ W @ self.X) @ self.X.T @ W @ self.y
-        self.y_hat = self.X @ self.beta_hat
-        self.residuals = self.y - self.y_hat
         self.fitted = True
+
+        self.y_hat = self.predict(self.X, add_intercept=False)
+        self.residuals = self.y - self.y_hat
+        
+
+class RidgeModel(RegressionModel):
+
+    def fit(self, ridge_lambda: float):
+        self.beta_hat = np.linalg.inv((self.X.T @ self.X) + (ridge_lambda * np.identity(self.p))) @ self.X.T @ self.y
+        self.fitted = True
+
+        self.y_hat = self.predict(self.X, add_intercept=False)
+        self.residuals = self.y - self.y_hat
+        
 
 #region test function
 def test_OLS_stuff(): # usage code for testing / can add the examples to the docs
