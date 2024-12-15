@@ -290,9 +290,9 @@ def test():
     X = np.random.rand(100, 2)  
     y = 3 + 2 * X[:, 0] + 4 * X[:, 1] + np.random.randn(100) * 0.5  # linear model with gaussian noise
 
-    mod = WLSModel(X, y)
+    mod = OLSModel(X, y)
     mod.fit()
     mod.summary()
 
 if __name__ == "__main__":
-    test()
+    test_OLS_stuff()
