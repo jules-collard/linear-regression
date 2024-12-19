@@ -28,6 +28,7 @@ class VariableSelector:
         Fits the model in self.model_class for a specified subset of the data.
         :param covariates: list of indices.
         :param observations: list of indices (only used for cross-validation).
+        :return: Fitted model.
         """
         if observations is None:
             observations = list(range(self.n))
