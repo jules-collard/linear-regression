@@ -66,6 +66,7 @@ class RegressionModel(ABC):
         print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}")
         for i in range( 1, self.p ): 
             print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}")
+        print(f"R-squared: {self.compute_r2()}, Adjusted R-squared: {self.compute_adj_r2()}")
 
     def coefficients(self) -> np.ndarray:
         """Returns the vector of estimated coefficients for a linear model.
@@ -101,7 +102,7 @@ class RegressionModel(ABC):
             self.r2()
         return self.adj_r2
 
-    def information_criteria(self): # Implemented for OLS and Ridge only
+    def information_criteria(self) -> dict: # Implemented for OLS and Ridge only
         """Calculates the full-model AIC and BIC
         
         :raises ValueError: Model not fitted
