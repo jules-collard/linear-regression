@@ -6,7 +6,7 @@ class VariableSelector:
         """
         Initialize the VariableSelector.
         """
-        model_obj.check_fitted()
+        model_obj.check_fitted() # The only reason that the model must be fitted is to get ridge_lambda. Maybe remove?
         self.model = model_obj
         self.model_class = model_obj.__class__
 
@@ -152,7 +152,7 @@ class VariableSelector:
         return best_model
     
     
-def test1():
+def test():
     X = np.random.rand(100, 10) 
     beta = np.array([0, 2, 0, 6, 0, 0, 4, 8, 0, 0]) # true model: [0, 2, 4, 7, 8], where 0 is the intercept
     y = 3 + (X @ beta) + np.random.randn(100) * 0.5  # linear model with gaussian noise
@@ -165,25 +165,37 @@ def test1():
     best_forward_covariates = selector.selected_covariates
     best_backward_model = selector.backward_selection(criterion='AIC')
     best_backward_covariates = selector.selected_covariates
+    print("\nAIC:")
     print("True model:", [0, 2, 4, 7, 8])
-    print("Forward selection covariates under AIC:", best_forward_covariates)
-    print("Backward selection covariates under AIC:", best_backward_covariates)
+    print("Forward selection output:", best_forward_covariates)
+    print("Backward selection output:", best_backward_covariates)
 
     best_forward_model = selector.forward_selection(criterion='BIC')
     best_forward_covariates = selector.selected_covariates
     best_backward_model = selector.backward_selection(criterion='BIC')
     best_backward_covariates = selector.selected_covariates
+    print("\nBIC:")
     print("True model:", [0, 2, 4, 7, 8])
-    print("Forward selection covariates under BIC:", best_forward_covariates)
-    print("Backward selection covariates under BIC:", best_backward_covariates)
+    print("Forward selection output:", best_forward_covariates)
+    print("Backward selection output:", best_backward_covariates)
+
+    best_forward_model = selector.forward_selection(criterion='CV', K=10)
+    best_forward_covariates = selector.selected_covariates
+    best_backward_model = selector.backward_selection(criterion='CV', K=10)
+    best_backward_covariates = selector.selected_covariates
+    print("\n10-fold CV:")
+    print("True model:", [0, 2, 4, 7, 8])
+    print("Forward selection output:", best_forward_covariates)
+    print("Backward selection output:", best_backward_covariates)
 
     best_forward_model = selector.forward_selection(criterion='CV', K=100)
     best_forward_covariates = selector.selected_covariates
     best_backward_model = selector.backward_selection(criterion='CV', K=100)
     best_backward_covariates = selector.selected_covariates
+    print("\nLeave-one-out CV:")
     print("True model:", [0, 2, 4, 7, 8])
-    print("Forward selection covariates under CV:", best_forward_covariates)
-    print("Backward selection covariates under CV:", best_backward_covariates)
+    print("Forward selection output:", best_forward_covariates)
+    print("Backward selection output:", best_backward_covariates)
 
 if __name__ == "__main__":
-    test1()
+    test()
