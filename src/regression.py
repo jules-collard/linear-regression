@@ -42,7 +42,7 @@ class RegressionModel(ABC):
         for i in range( 1, self.p ): 
             print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}")
 
-    def r2(self):
+    def compute_r2(self):
         self.check_fitted()
         y_bar = np.mean(self.y)
         self.r2 = ((self.y_hat - y_bar).T @ (self.y_hat - y_bar)) / ((self.y - y_bar).T @ (self.y - y_bar))
@@ -111,12 +111,20 @@ class OLSModel(RegressionModel):
         
         t_stats, p_values, significant = infer.t_test()
         confidences = infer.confidence_intervals_beta()
+        F_stat, F_p_value = infer.f_test_intercept_only()
+        self.compute_r2()
+        self.information_criteria()
 
-        print("COEFFICIENT SUMMARY TABLE (Significance level 0.05)")
+        print("\nCOEFFICIENT SUMMARY TABLE (Significance level 0.05)")
         print(f"{'Variable':<15}{'Estimated Coefficient':<25}{'T statistic':<15}{'P-value':<10}{'Significant':<13}{'Lower Bound ':<13}{'Upper Bound': <13}{'Coverage Level':<20}")
         print(f"{'Intercept':<15}{self.beta_hat[0]:<25.5f}{t_stats[0]:<15.5f}{p_values[0]:<10.5f}{str(significant[0]):<13}{confidences[0].lb:<15.5f}{confidences[0].ub:<13.5f}{confidences[0].coverage * 100:<15}")
         for i in range( 1, self.p ): 
             print(f"{f'x{i -1}':<15}{self.beta_hat[i]:<25.5f}{t_stats[i]:<15.5f}{p_values[i]:<10.5f}{str(significant[i]):<13}{confidences[i].lb:<15.5f}{confidences[i].ub:<13.5f}{confidences[i].coverage * 100:<15}")
+        print("\nMODEL EVALUATION")
+        print(f"F statistic: {F_stat}, p-value: {F_p_value}")
+        print(f"R-squared: {self.r2}, Adjusted R-squared: {self.adj_r2}")
+        print(f"Full-model AIC: {self.aic}")
+        print(f"Full-model BIC: {self.bic}")
 
 class OLS_Inference:
     def __init__(self, ols: OLSModel):
