@@ -1,4 +1,3 @@
 numpy
 scipy
-abc
 sphinx-rtd-theme
