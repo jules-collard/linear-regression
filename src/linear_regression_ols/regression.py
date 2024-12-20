@@ -115,9 +115,8 @@ class RegressionModel(ABC):
         return {'AIC': self.aic, 'BIC': self.bic}
 
     def check_fitted(self):
-        """Utility method for verifying if model has been fitted.
-
-        :raises ValueError: Model not fitted
+        """
+        :meta private:
         """
         if not self.fitted: raise ValueError('Model not fitted')
         
