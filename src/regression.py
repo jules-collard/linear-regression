@@ -77,7 +77,7 @@ class RegressionModel(ABC):
         self.check_fitted()
         return self.beta_hat
 
-    def r2(self) -> float:
+    def compute_r2(self) -> float:
         """Calculates R^2 coefficient
 
         :raises ValueError: Model not fitted
@@ -90,7 +90,7 @@ class RegressionModel(ABC):
         self.adj_r2 = 1 - ((1 - self.r2) * (self.n / (self.n - self.p)))
         return self.r2
     
-    def adj_r2(self) -> float:
+    def compute_adj_r2(self) -> float:
         """Calculates adjusted R^2 coefficient
 
         :raises ValueError: Model not fitted
