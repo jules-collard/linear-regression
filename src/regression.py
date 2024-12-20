@@ -102,6 +102,13 @@ class RegressionModel(ABC):
         return self.adj_r2
 
     def information_criteria(self): # Implemented for OLS and Ridge only
+        """Calculates the full-model AIC and BIC
+        
+        :raises ValueError: Model not fitted
+        :return: Dictionary containing the AIC and BiC values
+        :rtype: dict
+        """
+        self.check_fitted()
         self.aic = self.n + (self.n * np.log(2 * np.pi * self.sigma_squared)) + (2 * self.p)
         self.bic = self.n + (self.n * np.log(2 * np.pi * self.sigma_squared)) + (np.log(self.n) * self.p)
         return {'AIC': self.aic, 'BIC': self.bic}
