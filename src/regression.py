@@ -18,6 +18,7 @@ class RegressionModel(ABC):
         """Constructor method
         """
         self.fitted = False
+        self.hyperparameters = None
         # Data
         self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if add_intercept else X
         self.y: np.ndarray = y
@@ -26,6 +27,7 @@ class RegressionModel(ABC):
         # Model Output
         self.beta_hat: np.ndarray = None
         self.residuals: np.ndarray = None
+        self.sigma_squared: np.ndarray = None
         self.y_hat: np.ndarray = None
 
         # Diagnostics
@@ -98,6 +100,11 @@ class RegressionModel(ABC):
         if self.adj_r2 is not None:
             self.r2()
         return self.adj_r2
+
+    def information_criteria(self): # Implemented for OLS and Ridge only
+        self.aic = self.n + (self.n * np.log(2 * np.pi * self.sigma_squared)) + (2 * self.p)
+        self.bic = self.n + (self.n * np.log(2 * np.pi * self.sigma_squared)) + (np.log(self.n) * self.p)
+        return {'AIC': self.aic, 'BIC': self.bic}
 
     def check_fitted(self):
         """Utility method for verifying if model has been fitted.
@@ -415,9 +422,16 @@ class RidgeModel(RegressionModel):
             raise ValueError("Regularization parameter must be greater than 0")
         self.beta_hat = np.linalg.inv((self.X.T @ self.X) + (ridge_lambda * np.identity(self.p))) @ self.X.T @ self.y
         self.fitted = True
+        self.hyperparameters = ridge_lambda
 
         self.y_hat = self.predict(self.X, add_intercept=False)
         self.residuals = self.y - self.y_hat
+        self.sigma_squared = sum(self.residuals ** 2 ) / (self.n - np.trace(self.hat_matrix()))
+
+    def hat_matrix(self):
+        self.check_fitted()
+        H = self.X @ (np.linalg.inv((self.X.T @ self.X) + (self.hyperparameters * np.identity(self.p)))) @ self.X.T
+        return H
         
 
 #region test function
