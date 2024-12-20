@@ -1,27 +1,14 @@
 import numpy as np
-# import itertools
 import regression
-import random
 
 class VariableSelector:
     def __init__(self, model_obj):
         """
         Initialize the VariableSelector.
-
-        :param model_class: A RegressionModel subclass (e.g., OLSModel, RidgeModel).
-        :param X: Predictor variables (array).
-        :param y: Target variable (array).
-        :param add_intercept: Whether to add an intercept column to X.
-        :param model_kwargs: Additional parameters for the model (e.g., lambda for RidgeModel).
         """
         model_obj.check_fitted()
         self.model = model_obj
         self.model_class = model_obj.__class__
-        # self.X = np.hstack((np.ones((X.shape[0], 1)), X)) if add_intercept else X
-        # self.y = y
-        # self.n, self.p = self.X.shape
-        # self.add_intercept = add_intercept
-        # self.model_kwargs = model_kwargs
 
         self.selected_covariates = []
 
@@ -37,8 +24,8 @@ class VariableSelector:
         X_selected = self.model.X[observations, :]
         X_selected = X_selected[:, covariates]
         y_selected = self.model.y[observations]
-
-        new_model = self.model_class(X_selected, y_selected, add_intercept=False)
+        new_model = self.model_class(X_selected, y_selected, add_intercept=False) # Fit model on subset data
+        # Check if model requires hyperparameter (i.e., is Ridge)
         if self.model.hyperparameters is None:
             new_model.fit()
         else:
@@ -46,19 +33,19 @@ class VariableSelector:
         return new_model
     
     def partition(self, K, list):
-        random.shuffle(list)
+        list = np.random.permutation(list).tolist()
         return [list[i::K] for i in range(K)]
     
     def compute_hold_out(self, covariates, ho_indices):
+        # Training
         complement = [i for i in list(range(self.model.n)) if i not in ho_indices ]
         new_model = self.fit_model(covariates, complement)
-
+        # Testing
         X_test = self.model.X[ho_indices, :]
         X_test = X_test[:, covariates]
         y_test = self.model.y[ho_indices]
-
-        y_pred = new_model.predict(X_test, add_intercept=False)
-        residuals = y_test - y_pred
+        y_hat = new_model.predict(X_test, add_intercept=False)
+        residuals = y_test - y_hat
         L_hold_out = sum(residuals ** 2) / len(ho_indices)
         return L_hold_out
     
@@ -70,13 +57,9 @@ class VariableSelector:
         L_cv = ho_sum / K
         return L_cv
     
-    def compute_criteria(self, covariates, k=10):
+    def compute_ic(self, covariates):       
         new_model = self.fit_model(covariates)
-        n, alpha = new_model.n, new_model.p
-        sigma_hat = sum(new_model.residuals ** 2) / (n - 1)
-        aic = n + (n * np.log(2 * np.pi * sigma_hat)) + (2 * alpha)
-        bic = n + (n * np.log(2 * np.pi * sigma_hat)) + (np.log(n) * alpha)
-        return {'AIC': aic, 'BIC': bic}
+        return new_model.information_criteria()
 
     def forward_selection(self, criterion='AIC', K=10, threshold=0):
         '''
@@ -104,7 +87,7 @@ class VariableSelector:
                 if criterion == 'CV':
                     crit_value = self.compute_cross_validation(candidate_model, K)
                 else:
-                    crit_value = self.compute_criteria(candidate_model)[criterion]
+                    crit_value = self.compute_ic(candidate_model)[criterion] # Extract value with dictionary key
                 results.append((crit_value, covariate))
             
             # Find the covariate that optimized the criterion
@@ -143,7 +126,7 @@ class VariableSelector:
                 if criterion == 'CV':
                     crit_value = self.compute_cross_validation(candidate_model, K)
                 else:
-                    crit_value = self.compute_criteria(candidate_model)[criterion]
+                    crit_value = self.compute_ic(candidate_model)[criterion] # Extract value with dictionary key
                 results.append((crit_value, covariate))
             
             # Find the covariate that optimized the criterion
