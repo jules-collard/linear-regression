@@ -1,5 +1,5 @@
 import numpy as np
-import linear_regression_ols.regression as regression
+import regression
 
 class VariableSelector:
     def __init__(self, model_obj: regression.RegressionModel):

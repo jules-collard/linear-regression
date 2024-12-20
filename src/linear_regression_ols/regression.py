@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.stats import t, f
 from abc import ABC, abstractmethod
-from linear_regression_ols.confints import ConfidenceInterval
+from confints import ConfidenceInterval
 
 class RegressionModel(ABC):
     """Abstract class representing a general regression model

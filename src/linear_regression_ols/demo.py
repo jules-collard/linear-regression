@@ -1,5 +1,5 @@
-from linear_regression_ols import regression as reg
-from linear_regression_ols import aggregation, variable_selection
+import regression as reg
+import aggregation, variable_selection
 import numpy as np
 
 #--DATA GENERATION--

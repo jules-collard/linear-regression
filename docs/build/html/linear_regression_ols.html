@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Examples" href="examples.html" />
-    <link rel="prev" title="linear_regression_ols" href="modules.html" /> 
+    <link rel="prev" title="Introduction" href="intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,35 +45,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">linear_regression_ols</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">linear_regression_ols Package Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-linear_regression_ols.aggregation">linear_regression_ols.aggregation module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.aggregation.Aggregator"><code class="docutils literal notranslate"><span class="pre">Aggregator</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-linear_regression_ols.confints">linear_regression_ols.confints module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.confints.ConfidenceInterval"><code class="docutils literal notranslate"><span class="pre">ConfidenceInterval</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-linear_regression_ols.demo">linear_regression_ols.demo module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-linear_regression_ols.regression">linear_regression_ols.regression module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel"><code class="docutils literal notranslate"><span class="pre">OLSModel</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLS_Inference"><code class="docutils literal notranslate"><span class="pre">OLS_Inference</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel"><code class="docutils literal notranslate"><span class="pre">RegressionModel</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel"><code class="docutils literal notranslate"><span class="pre">RidgeModel</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel"><code class="docutils literal notranslate"><span class="pre">WLSModel</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-linear_regression_ols.variable_selection">linear_regression_ols.variable_selection module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.variable_selection.VariableSelector"><code class="docutils literal notranslate"><span class="pre">VariableSelector</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-linear_regression_ols">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">linear_regression_ols Package Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-linear_regression_ols.aggregation">linear_regression_ols.aggregation module</a><ul>
@@ -171,7 +142,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">linear_regression_ols</a></li>
       <li class="breadcrumb-item active">linear_regression_ols Package Documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/linear_regression_ols.rst.txt" rel="nofollow"> View page source</a>
@@ -192,7 +162,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="linear_regression_ols.aggregation.Aggregator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linear_regression_ols.aggregation.</span></span><span class="sig-name descname"><span class="pre">Aggregator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel" title="linear_regression_ols.regression.RegressionModel"><span class="pre">RegressionModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.aggregation.Aggregator" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#linear_regression_ols.regression.RegressionModel" title="linear_regression_ols.regression.RegressionModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionModel</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionModel</span></code></p>
 <p>Class allowing simple aggregation of multiple regression models. Constructor takes a list of models (type :class:regression.RegressionModel) and averages their coefficients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
@@ -764,7 +734,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="linear_regression_ols" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
