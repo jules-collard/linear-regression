@@ -5,4 +5,6 @@ Introduction
 
 In the OLS case, functionality is provided for inference and model diagnostics, including hypothesis testing, confidence intervals and the AIC and BIC.
 
-Furthermore, forwards and backwards variable selection with respect to both the AIC and BIC are implemented
+Furthermore, forwards and backwards variable selection with respect to both the AIC and BIC are implemented.
+
+See the examples section, or ``demo.py`` in the source code for implementation examples.
