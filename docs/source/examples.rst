@@ -2,6 +2,7 @@ Examples
 ========
 
 .. code-block:: python
+    
     from linear_regression_ols import regression as reg
     from linear_regression_ols import aggregation, variable_selection
     import numpy as np

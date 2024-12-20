@@ -11,6 +11,7 @@ Welcome to linear-regression-ols's documentation!
    :caption: Contents:
 
    intro
+   modules
    linear_regression_ols
    examples
 
