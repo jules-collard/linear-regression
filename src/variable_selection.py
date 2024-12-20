@@ -114,6 +114,14 @@ class VariableSelector:
         return best_model
     
     def backward_selection(self, criterion='AIC', K=10, threshold=0):
+        '''
+        Perform backward variable selection using the specified criterion.
+
+        :param criterion: Criterion to optimize ('AIC' for Akaike Information Criterion, 'BIC' for Bayesian Information Criterion, or 'CV' for Cross Validation).
+        :param threshold: Minimum improvement required; used as stopping rule.
+        :param K: Number of folds for cross validation.
+        :return: Model fitted to the best covariate selection and list of selected covariate indices.
+        '''
         remaining_covariates = list(range(self.model.p))
         best_crit = float('inf')
 
