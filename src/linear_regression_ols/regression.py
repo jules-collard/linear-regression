@@ -10,7 +10,7 @@ class RegressionModel(ABC):
     :type X: np.ndarray
     :param y: Response vector (n x 1)
     :type y: np.ndarray
-    :param add_intercept: Option to add intercept column to :param:`X` if not already included, defaults to True
+    :param add_intercept: Option to add intercept column to X if not already included, defaults to True
     :type add_intercept: bool, optional
     """
 
