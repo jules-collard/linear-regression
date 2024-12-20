@@ -7,6 +7,7 @@ class RegressionModel(ABC):
 
     def __init__(self, X: np.ndarray, y: np.ndarray, add_intercept=True):
         self.fitted = False
+        self.hyperparameters = None
         # Data
         self.X: np.ndarray = np.hstack((np.ones((X.shape[0], 1)), X)) if add_intercept else X
         self.y: np.ndarray = y
@@ -234,6 +235,7 @@ class RidgeModel(RegressionModel):
     def fit(self, ridge_lambda: float):
         self.beta_hat = np.linalg.inv((self.X.T @ self.X) + (ridge_lambda * np.identity(self.p))) @ self.X.T @ self.y
         self.fitted = True
+        self.hyperparameters = ridge_lambda
 
         self.y_hat = self.predict(self.X, add_intercept=False)
         self.residuals = self.y - self.y_hat
