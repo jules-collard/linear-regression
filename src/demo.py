@@ -14,6 +14,8 @@ ols.fit()
 
 # Extract various aspects of the model
 ols.coefficients()
+print(ols.compute_adj_r2())
+print(ols.information_criteria())
 
 tester = reg.OLS_Inference(ols)
 
