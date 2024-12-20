@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.stats import t, f
 from abc import ABC, abstractmethod
-from confints import ConfidenceInterval
+from linear_regression_ols.confints import ConfidenceInterval
 
 class RegressionModel(ABC):
     """Abstract class representing a general regression model
@@ -46,7 +46,7 @@ class RegressionModel(ABC):
 
         :param X_new: Matrix data points for which predictions are made, with shape (n_new, p)
         :type X_new: np.ndarray
-        :param add_intercept: Option to add intercept column to :param:`X` if not already included, defaults to True
+        :param add_intercept: Option to add intercept column to X if not already included, defaults to True
         :type add_intercept: bool, optional
         :raises ValueError: Model not fitted
         :return: Predicted values for the new data, shape (n_new,1)
@@ -131,7 +131,7 @@ class OLSModel(RegressionModel):
     :type X: np.ndarray
     :param y: Response vector (n x 1)
     :type y: np.ndarray
-    :param add_intercept: Option to add intercept column to :param:`X` if not already included, defaults to True
+    :param add_intercept: Option to add intercept column to X if not already included, defaults to True
     :type add_intercept: bool, optional
     """
     
@@ -326,7 +326,7 @@ class OLS_Inference:
 
         :param X_new: Matrix of data points for which predictions are made, with shape (n_new, p)
         :type X_new: np.ndarray
-        :param add_intercept: Option to add intercept column to :param:`X` if not already included, defaults to True
+        :param add_intercept: Option to add intercept column to X if not already included, defaults to True
         :type add_intercept: bool, optional
         :param alpha: Significance level for prediction intervals, defaults to 0.05
         :type alpha: float, optional
@@ -356,7 +356,7 @@ class OLS_Inference:
 
         :param X_new: Matrix of data points for which new regression function is calculated
         :type X_new: np.ndarray
-        :param add_intercept: Option to add intercept column to :param:`X` if not already included, defaults to True
+        :param add_intercept: Option to add intercept column to X if not already included, defaults to True
         :type add_intercept: bool, optional
         :param alpha: Significance level for prediction intervals, defaults to 0.05
         :type alpha: float, optional
@@ -392,7 +392,7 @@ class WLSModel(RegressionModel):
     :type X: np.ndarray
     :param y: Response vector (n x 1)
     :type y: np.ndarray
-    :param add_intercept: Option to add intercept column to :param:`X` if not already included, defaults to True
+    :param add_intercept: Option to add intercept column to X if not already included, defaults to True
     :type add_intercept: bool, optional
     """
 
@@ -423,7 +423,7 @@ class RidgeModel(RegressionModel):
     :type X: np.ndarray
     :param y: Response vector (n x 1)
     :type y: np.ndarray
-    :param add_intercept: Option to add intercept column to :param:`X` if not already included, defaults to True
+    :param add_intercept: Option to add intercept column to X if not already included, defaults to True
     :type add_intercept: bool, optional
     """
 

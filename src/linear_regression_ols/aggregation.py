@@ -1,4 +1,4 @@
-import regression
+from linear_regression_ols import regression
 import numpy as np
 
 class Aggregator(regression.RegressionModel):

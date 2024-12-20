@@ -1,8 +1,8 @@
 import numpy as np
-import regression
+import linear_regression_ols.regression as regression
 
 class VariableSelector:
-    def __init__(self, model_obj):
+    def __init__(self, model_obj: regression.RegressionModel):
         """Initialize the VariableSelector.
         """
         model_obj.check_fitted() # The only reason that the model must be fitted is to get ridge_lambda. Maybe remove?
