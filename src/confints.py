@@ -10,6 +10,7 @@ class ConfidenceInterval:
     :type coverage: float
     :param estimate: Estimated parameter, defaults to None
     :type estimate: _type_, optional
+    :raises ValueError: Bounds must be well-defined, with estimate within bounds
     """
 
     # Simple initialisation
