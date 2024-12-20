@@ -32,22 +32,3 @@ class Aggregator(regression.RegressionModel):
         
         self.y_hat = self.predict(self.X, add_intercept=False)
         self.residuals = self.y - self.y_hat
-
-def test():
-    X = np.random.rand(100, 2)  
-    y = 3 + 2 * X[:, 0] + 4 * X[:, 1] + np.random.randn(100) * 0.5  # linear model with gaussian noise
-
-    mod1 = regression.OLSModel(X,y)
-    mod1.fit()
-    mod2 = regression.WLSModel(X,y)
-    mod2.fit()
-    mod3 = regression.RidgeModel(X,y)
-    mod3.fit(5)
-
-    agg = Aggregator(mod1, mod2, mod3)
-    agg.fit()
-    agg.summary()
-
-
-if __name__ == "__main__":
-    test()
