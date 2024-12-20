@@ -35,6 +35,7 @@ linear\_regression\_ols.regression module
    :members:
    :undoc-members:
    :show-inheritance:
+   :inherited-members:
 
 linear\_regression\_ols.variable\_selection module
 --------------------------------------------------
@@ -44,10 +45,3 @@ linear\_regression\_ols.variable\_selection module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: linear_regression_ols
-   :members:
-   :undoc-members:
-   :show-inheritance:
