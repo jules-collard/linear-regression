@@ -1,5 +1,5 @@
 import regression as reg
-import aggregation
+import aggregation, variable_selection
 import numpy as np
 
 #--DATA GENERATION--
@@ -69,3 +69,51 @@ ridge.summary()
 agg = aggregation.Aggregator(ols, wls, ridge)
 agg.fit()
 agg.summary()
+
+######################
+# Variable Selection #
+######################
+
+X = np.random.rand(100, 10) 
+beta = np.array([0, 2, 0, 6, 0, 0, 4, 8, 0, 0]) # true model: [0, 2, 4, 7, 8], where 0 is the intercept
+y = 3 + (X @ beta) + np.random.randn(100) * 0.5  # linear model with gaussian noise
+
+model = reg.OLSModel(X, y)
+model.fit()
+selector = variable_selection.VariableSelector(model)
+
+best_forward_model = selector.forward_selection(criterion='AIC')
+best_forward_covariates = selector.selected_covariates
+best_backward_model = selector.backward_selection(criterion='AIC')
+best_backward_covariates = selector.selected_covariates
+print("\nAIC:")
+print("True model:", [0, 2, 4, 7, 8])
+print("Forward selection output:", best_forward_covariates)
+print("Backward selection output:", best_backward_covariates)
+
+best_forward_model = selector.forward_selection(criterion='BIC')
+best_forward_covariates = selector.selected_covariates
+best_backward_model = selector.backward_selection(criterion='BIC')
+best_backward_covariates = selector.selected_covariates
+print("\nBIC:")
+print("True model:", [0, 2, 4, 7, 8])
+print("Forward selection output:", best_forward_covariates)
+print("Backward selection output:", best_backward_covariates)
+
+best_forward_model = selector.forward_selection(criterion='CV', K=10)
+best_forward_covariates = selector.selected_covariates
+best_backward_model = selector.backward_selection(criterion='CV', K=10)
+best_backward_covariates = selector.selected_covariates
+print("\n10-fold CV:")
+print("True model:", [0, 2, 4, 7, 8])
+print("Forward selection output:", best_forward_covariates)
+print("Backward selection output:", best_backward_covariates)
+
+best_forward_model = selector.forward_selection(criterion='CV', K=100)
+best_forward_covariates = selector.selected_covariates
+best_backward_model = selector.backward_selection(criterion='CV', K=100)
+best_backward_covariates = selector.selected_covariates
+print("\nLeave-one-out CV:")
+print("True model:", [0, 2, 4, 7, 8])
+print("Forward selection output:", best_forward_covariates)
+print("Backward selection output:", best_backward_covariates)
