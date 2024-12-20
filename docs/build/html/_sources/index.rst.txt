@@ -10,9 +10,9 @@ Welcome to linear-regression-ols's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-intro
-linear_regression_ols
-examples
+   intro
+   linear_regression_ols
+   examples
 
 Indices and tables
 ==================
