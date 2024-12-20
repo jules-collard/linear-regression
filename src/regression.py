@@ -99,7 +99,7 @@ class RegressionModel(ABC):
         :rtype: float
         """
         if self.adj_r2 is not None:
-            self.r2()
+            self.compute_r2()
         return self.adj_r2
 
     def information_criteria(self) -> dict: # Implemented for OLS and Ridge only
