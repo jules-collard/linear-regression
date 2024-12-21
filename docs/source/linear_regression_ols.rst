@@ -35,7 +35,10 @@ linear\_regression\_ols.regression module
    :members:
    :undoc-members:
    :show-inheritance:
-   :inherited-members:
+   :exclude-members: RegressionModel
+
+   .. autoclass:: RegressionModel
+      :inherited-members: OLSModel, RidgeModel, WLSModel
 
 linear\_regression\_ols.variable\_selection module
 --------------------------------------------------

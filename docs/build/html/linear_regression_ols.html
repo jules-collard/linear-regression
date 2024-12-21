@@ -66,17 +66,21 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-linear_regression_ols.demo">linear_regression_ols.demo module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-linear_regression_ols.regression">linear_regression_ols.regression module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel"><code class="docutils literal notranslate"><span class="pre">RegressionModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.coefficients"><code class="docutils literal notranslate"><span class="pre">RegressionModel.coefficients()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.compute_adj_r2"><code class="docutils literal notranslate"><span class="pre">RegressionModel.compute_adj_r2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.compute_r2"><code class="docutils literal notranslate"><span class="pre">RegressionModel.compute_r2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.information_criteria"><code class="docutils literal notranslate"><span class="pre">RegressionModel.information_criteria()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.predict"><code class="docutils literal notranslate"><span class="pre">RegressionModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.summary"><code class="docutils literal notranslate"><span class="pre">RegressionModel.summary()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel"><code class="docutils literal notranslate"><span class="pre">OLSModel</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.annihilator_matrix"><code class="docutils literal notranslate"><span class="pre">OLSModel.annihilator_matrix()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.coefficients"><code class="docutils literal notranslate"><span class="pre">OLSModel.coefficients()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.compute_adj_r2"><code class="docutils literal notranslate"><span class="pre">OLSModel.compute_adj_r2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.compute_r2"><code class="docutils literal notranslate"><span class="pre">OLSModel.compute_r2()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.fit"><code class="docutils literal notranslate"><span class="pre">OLSModel.fit()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.get_covariance_matrix"><code class="docutils literal notranslate"><span class="pre">OLSModel.get_covariance_matrix()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.hat_matrix"><code class="docutils literal notranslate"><span class="pre">OLSModel.hat_matrix()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.information_criteria"><code class="docutils literal notranslate"><span class="pre">OLSModel.information_criteria()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.leverages"><code class="docutils literal notranslate"><span class="pre">OLSModel.leverages()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.predict"><code class="docutils literal notranslate"><span class="pre">OLSModel.predict()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.standardized_residuals"><code class="docutils literal notranslate"><span class="pre">OLSModel.standardized_residuals()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLSModel.summary"><code class="docutils literal notranslate"><span class="pre">OLSModel.summary()</span></code></a></li>
 </ul>
@@ -92,35 +96,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.OLS_Inference.t_test"><code class="docutils literal notranslate"><span class="pre">OLS_Inference.t_test()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel"><code class="docutils literal notranslate"><span class="pre">RegressionModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.coefficients"><code class="docutils literal notranslate"><span class="pre">RegressionModel.coefficients()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.compute_adj_r2"><code class="docutils literal notranslate"><span class="pre">RegressionModel.compute_adj_r2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.compute_r2"><code class="docutils literal notranslate"><span class="pre">RegressionModel.compute_r2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.fit"><code class="docutils literal notranslate"><span class="pre">RegressionModel.fit()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.information_criteria"><code class="docutils literal notranslate"><span class="pre">RegressionModel.information_criteria()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.predict"><code class="docutils literal notranslate"><span class="pre">RegressionModel.predict()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RegressionModel.summary"><code class="docutils literal notranslate"><span class="pre">RegressionModel.summary()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel"><code class="docutils literal notranslate"><span class="pre">RidgeModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.coefficients"><code class="docutils literal notranslate"><span class="pre">RidgeModel.coefficients()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.compute_adj_r2"><code class="docutils literal notranslate"><span class="pre">RidgeModel.compute_adj_r2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.compute_r2"><code class="docutils literal notranslate"><span class="pre">RidgeModel.compute_r2()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.fit"><code class="docutils literal notranslate"><span class="pre">RidgeModel.fit()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.hat_matrix"><code class="docutils literal notranslate"><span class="pre">RidgeModel.hat_matrix()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.information_criteria"><code class="docutils literal notranslate"><span class="pre">RidgeModel.information_criteria()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.predict"><code class="docutils literal notranslate"><span class="pre">RidgeModel.predict()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.RidgeModel.summary"><code class="docutils literal notranslate"><span class="pre">RidgeModel.summary()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel"><code class="docutils literal notranslate"><span class="pre">WLSModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel.coefficients"><code class="docutils literal notranslate"><span class="pre">WLSModel.coefficients()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel.compute_adj_r2"><code class="docutils literal notranslate"><span class="pre">WLSModel.compute_adj_r2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel.compute_r2"><code class="docutils literal notranslate"><span class="pre">WLSModel.compute_r2()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel.fit"><code class="docutils literal notranslate"><span class="pre">WLSModel.fit()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel.information_criteria"><code class="docutils literal notranslate"><span class="pre">WLSModel.information_criteria()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel.predict"><code class="docutils literal notranslate"><span class="pre">WLSModel.predict()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#linear_regression_ols.regression.WLSModel.summary"><code class="docutils literal notranslate"><span class="pre">WLSModel.summary()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -242,10 +224,10 @@
 <section id="module-linear_regression_ols.regression">
 <span id="linear-regression-ols-regression-module"></span><h2>linear_regression_ols.regression module<a class="headerlink" href="#module-linear_regression_ols.regression" title="Link to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linear_regression_ols.regression.</span></span><span class="sig-name descname"><span class="pre">OLSModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#linear_regression_ols.regression.RegressionModel" title="linear_regression_ols.regression.RegressionModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionModel</span></code></a></p>
-<p>Implementation of Ordinary Least Squares (OLS) regression. It provides methods to fit the model, predict new values, compute diagnostics, and calculate key metrics such as residuals, leverage values, and confidence intervals.</p>
+<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linear_regression_ols.regression.</span></span><span class="sig-name descname"><span class="pre">RegressionModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract class representing a general regression model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -256,13 +238,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.annihilator_matrix">
-<span class="sig-name descname"><span class="pre">annihilator_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.annihilator_matrix" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.coefficients">
-<span class="sig-name descname"><span class="pre">coefficients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.coefficients" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.coefficients">
+<span class="sig-name descname"><span class="pre">coefficients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.coefficients" title="Link to this definition"></a></dt>
 <dd><p>Returns the vector of estimated coefficients for a linear model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
@@ -278,8 +255,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.compute_adj_r2">
-<span class="sig-name descname"><span class="pre">compute_adj_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.compute_adj_r2" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.compute_adj_r2">
+<span class="sig-name descname"><span class="pre">compute_adj_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.compute_adj_r2" title="Link to this definition"></a></dt>
 <dd><p>Calculates adjusted R^2 coefficient</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
@@ -295,8 +272,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.compute_r2">
-<span class="sig-name descname"><span class="pre">compute_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.compute_r2" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.compute_r2">
+<span class="sig-name descname"><span class="pre">compute_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.compute_r2" title="Link to this definition"></a></dt>
 <dd><p>Calculates R^2 coefficient</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
@@ -312,24 +289,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.fit" title="Link to this definition"></a></dt>
-<dd><p>Fits OLS model to data (in place) by computing coefficients</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.get_covariance_matrix">
-<span class="sig-name descname"><span class="pre">get_covariance_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.get_covariance_matrix" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.hat_matrix">
-<span class="sig-name descname"><span class="pre">hat_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.hat_matrix" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.information_criteria">
-<span class="sig-name descname"><span class="pre">information_criteria</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.information_criteria" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.information_criteria">
+<span class="sig-name descname"><span class="pre">information_criteria</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.information_criteria" title="Link to this definition"></a></dt>
 <dd><p>Calculates the full-model AIC and BIC</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
@@ -345,13 +306,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.leverages">
-<span class="sig-name descname"><span class="pre">leverages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.leverages" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.predict" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.predict" title="Link to this definition"></a></dt>
 <dd><p>Generates prediction based on fitted model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -371,6 +327,59 @@
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.summary" title="Link to this definition"></a></dt>
+<dd><p>Prints model summary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linear_regression_ols.regression.</span></span><span class="sig-name descname"><span class="pre">OLSModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#linear_regression_ols.regression.RegressionModel" title="linear_regression_ols.regression.RegressionModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionModel</span></code></a></p>
+<p>Implementation of Ordinary Least Squares (OLS) regression. It provides methods to fit the model, predict new values, compute diagnostics, and calculate key metrics such as residuals, leverage values, and confidence intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – Design matrix (n x p)</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Response vector (n x 1)</p></li>
+<li><p><strong>add_intercept</strong> (<em>bool</em><em>, </em><em>optional</em>) – Option to add intercept column to X if not already included, defaults to True</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.annihilator_matrix">
+<span class="sig-name descname"><span class="pre">annihilator_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.annihilator_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.fit" title="Link to this definition"></a></dt>
+<dd><p>Fits OLS model to data (in place) by computing coefficients</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.get_covariance_matrix">
+<span class="sig-name descname"><span class="pre">get_covariance_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.get_covariance_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.hat_matrix">
+<span class="sig-name descname"><span class="pre">hat_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.hat_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.leverages">
+<span class="sig-name descname"><span class="pre">leverages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.OLSModel.leverages" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="linear_regression_ols.regression.OLSModel.standardized_residuals">
@@ -566,129 +575,6 @@
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linear_regression_ols.regression.</span></span><span class="sig-name descname"><span class="pre">RegressionModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
-<p>Abstract class representing a general regression model</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>np.ndarray</em>) – Design matrix (n x p)</p></li>
-<li><p><strong>y</strong> (<em>np.ndarray</em>) – Response vector (n x 1)</p></li>
-<li><p><strong>add_intercept</strong> (<em>bool</em><em>, </em><em>optional</em>) – Option to add intercept column to X if not already included, defaults to True</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.coefficients">
-<span class="sig-name descname"><span class="pre">coefficients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.coefficients" title="Link to this definition"></a></dt>
-<dd><p>Returns the vector of estimated coefficients for a linear model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Vector of coefficients</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.compute_adj_r2">
-<span class="sig-name descname"><span class="pre">compute_adj_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.compute_adj_r2" title="Link to this definition"></a></dt>
-<dd><p>Calculates adjusted R^2 coefficient</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Adjusted R^2 coefficient</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.compute_r2">
-<span class="sig-name descname"><span class="pre">compute_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.compute_r2" title="Link to this definition"></a></dt>
-<dd><p>Calculates R^2 coefficient</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>R^2 coefficient</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.fit">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.fit" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.information_criteria">
-<span class="sig-name descname"><span class="pre">information_criteria</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.information_criteria" title="Link to this definition"></a></dt>
-<dd><p>Calculates the full-model AIC and BIC</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary containing the AIC and BiC values</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.predict" title="Link to this definition"></a></dt>
-<dd><p>Generates prediction based on fitted model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X_new</strong> (<em>np.ndarray</em>) – Matrix data points for which predictions are made, with shape (n_new, p)</p></li>
-<li><p><strong>add_intercept</strong> (<em>bool</em><em>, </em><em>optional</em>) – Option to add intercept column to X if not already included, defaults to True</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Predicted values for the new data, shape (n_new,1)</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RegressionModel.summary">
-<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RegressionModel.summary" title="Link to this definition"></a></dt>
-<dd><p>Prints model summary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linear_regression_ols.regression.</span></span><span class="sig-name descname"><span class="pre">RidgeModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#linear_regression_ols.regression.RegressionModel" title="linear_regression_ols.regression.RegressionModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegressionModel</span></code></a></p>
@@ -702,57 +588,6 @@
 </ul>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel.coefficients">
-<span class="sig-name descname"><span class="pre">coefficients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.coefficients" title="Link to this definition"></a></dt>
-<dd><p>Returns the vector of estimated coefficients for a linear model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Vector of coefficients</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel.compute_adj_r2">
-<span class="sig-name descname"><span class="pre">compute_adj_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.compute_adj_r2" title="Link to this definition"></a></dt>
-<dd><p>Calculates adjusted R^2 coefficient</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Adjusted R^2 coefficient</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel.compute_r2">
-<span class="sig-name descname"><span class="pre">compute_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.compute_r2" title="Link to this definition"></a></dt>
-<dd><p>Calculates R^2 coefficient</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>R^2 coefficient</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ridge_lambda</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.fit" title="Link to this definition"></a></dt>
@@ -772,57 +607,6 @@
 <span class="sig-name descname"><span class="pre">hat_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.hat_matrix" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel.information_criteria">
-<span class="sig-name descname"><span class="pre">information_criteria</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.information_criteria" title="Link to this definition"></a></dt>
-<dd><p>Calculates the full-model AIC and BIC</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary containing the AIC and BiC values</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.predict" title="Link to this definition"></a></dt>
-<dd><p>Generates prediction based on fitted model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X_new</strong> (<em>np.ndarray</em>) – Matrix data points for which predictions are made, with shape (n_new, p)</p></li>
-<li><p><strong>add_intercept</strong> (<em>bool</em><em>, </em><em>optional</em>) – Option to add intercept column to X if not already included, defaults to True</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Predicted values for the new data, shape (n_new,1)</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.RidgeModel.summary">
-<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.RidgeModel.summary" title="Link to this definition"></a></dt>
-<dd><p>Prints model summary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -840,111 +624,9 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.WLSModel.coefficients">
-<span class="sig-name descname"><span class="pre">coefficients</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.WLSModel.coefficients" title="Link to this definition"></a></dt>
-<dd><p>Returns the vector of estimated coefficients for a linear model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Vector of coefficients</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.WLSModel.compute_adj_r2">
-<span class="sig-name descname"><span class="pre">compute_adj_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.WLSModel.compute_adj_r2" title="Link to this definition"></a></dt>
-<dd><p>Calculates adjusted R^2 coefficient</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Adjusted R^2 coefficient</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.WLSModel.compute_r2">
-<span class="sig-name descname"><span class="pre">compute_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.WLSModel.compute_r2" title="Link to this definition"></a></dt>
-<dd><p>Calculates R^2 coefficient</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>R^2 coefficient</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="linear_regression_ols.regression.WLSModel.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.WLSModel.fit" title="Link to this definition"></a></dt>
 <dd><p>Fits WLS Model (in place) by estimating weights (known as feasible WLS).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.WLSModel.information_criteria">
-<span class="sig-name descname"><span class="pre">information_criteria</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.WLSModel.information_criteria" title="Link to this definition"></a></dt>
-<dd><p>Calculates the full-model AIC and BIC</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary containing the AIC and BiC values</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.WLSModel.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#linear_regression_ols.regression.WLSModel.predict" title="Link to this definition"></a></dt>
-<dd><p>Generates prediction based on fitted model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X_new</strong> (<em>np.ndarray</em>) – Matrix data points for which predictions are made, with shape (n_new, p)</p></li>
-<li><p><strong>add_intercept</strong> (<em>bool</em><em>, </em><em>optional</em>) – Option to add intercept column to X if not already included, defaults to True</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Predicted values for the new data, shape (n_new,1)</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="linear_regression_ols.regression.WLSModel.summary">
-<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linear_regression_ols.regression.WLSModel.summary" title="Link to this definition"></a></dt>
-<dd><p>Prints model summary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – Model not fitted</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
