@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linear_regression_ols.html">linear_regression_ols Package Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 </ul>
@@ -75,10 +76,21 @@
              
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">linear_regression_ols</span></code> is a Python package implementing the most commonly used linear regression techniques, including Ordinary Least Squares, Weighted Least Squares, Ridge Estimation and Cross-Validation.</p>
-<p>In the OLS case, functionality is provided for inference and model diagnostics, including hypothesis testing, confidence intervals and the AIC and BIC.</p>
-<p>Furthermore, forwards and backwards variable selection with respect to both the AIC and BIC are implemented.</p>
-<p>See the examples section, or <code class="docutils literal notranslate"><span class="pre">demo.py</span></code> in the source code for implementation examples.</p>
+<p><code class="docutils literal notranslate"><span class="pre">linear_regression_ols</span></code> is a Python package implementing the most commonly used linear regression techniques, including Ordinary Least Squares, Weighted Least Squares, Ridge Estimation and Cross-Validation. In the OLS case, functionality is provided for inference and model diagnostics, including hypothesis testing, confidence intervals and the AIC and BIC. Furthermore, forwards and backwards variable selection with respect to both the AIC and BIC are implemented. Implementation uses <cite>numpy</cite> and <cite>scipy</cite> for linear algebra and distributions.</p>
+<p>Full source code, README and wiki is available at the repository <a class="reference external" href="https://github.com/jules-collard/linear-regression-ols">https://github.com/jules-collard/linear-regression-ols</a>.</p>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<p>General usage philosophy is as follows:
+1. Select a model from <cite>OLSModel</cite>, <cite>WLSModel</cite>, <cite>RidgeModel</cite> or <cite>Aggregator</cite>. These all inherit from parent class <cite>RegressionModel</cite>.
+2. Initialise model object with data, for example <cite>ols = OLSModel(X,y)</cite>
+3. Fit model with <cite>ols.fit()</cite></p>
+<p>From this point, certain methods are common to all models, inheriting from the <code class="docutils literal notranslate"><span class="pre">RegressionModel</span></code> class:
+* <code class="docutils literal notranslate"><span class="pre">summary()</span></code> for a model summary
+* <code class="docutils literal notranslate"><span class="pre">predict</span></code> for predictions on new data
+* <code class="docutils literal notranslate"><span class="pre">compute_r2()</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_adj_r2()</span></code>, <code class="docutils literal notranslate"><span class="pre">information_criteria()</span></code> for model diagnostics</p>
+<p>See documentation on <code class="docutils literal notranslate"><span class="pre">variable_selection</span></code> submodule for variable selection techniques, and the <code class="docutils literal notranslate"><span class="pre">OLS_Inference</span></code> class for inference techniques.</p>
+<p>See the examples section of this documentation, or <code class="docutils literal notranslate"><span class="pre">demo.py</span></code> in the source code, for full implementation examples.</p>
 </section>
 
 
