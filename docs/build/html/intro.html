@@ -81,14 +81,18 @@
 </section>
 <section id="usage">
 <h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
-<p>General usage philosophy is as follows:
-1. Select a model from <cite>OLSModel</cite>, <cite>WLSModel</cite>, <cite>RidgeModel</cite> or <cite>Aggregator</cite>. These all inherit from parent class <cite>RegressionModel</cite>.
-2. Initialise model object with data, for example <cite>ols = OLSModel(X,y)</cite>
-3. Fit model with <cite>ols.fit()</cite></p>
-<p>From this point, certain methods are common to all models, inheriting from the <code class="docutils literal notranslate"><span class="pre">RegressionModel</span></code> class:
-* <code class="docutils literal notranslate"><span class="pre">summary()</span></code> for a model summary
-* <code class="docutils literal notranslate"><span class="pre">predict</span></code> for predictions on new data
-* <code class="docutils literal notranslate"><span class="pre">compute_r2()</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_adj_r2()</span></code>, <code class="docutils literal notranslate"><span class="pre">information_criteria()</span></code> for model diagnostics</p>
+<p>General usage philosophy is as follows:</p>
+<ol class="arabic simple">
+<li><p>Select a model from <cite>OLSModel</cite>, <cite>WLSModel</cite>, <cite>RidgeModel</cite> or <cite>Aggregator</cite>. These all inherit from parent class <cite>RegressionModel</cite>.</p></li>
+<li><p>Initialise model object with data, for example <cite>ols = OLSModel(X,y)</cite></p></li>
+<li><p>Fit model with <cite>ols.fit()</cite></p></li>
+</ol>
+<p>From this point, certain methods are common to all models, inheriting from the <code class="docutils literal notranslate"><span class="pre">RegressionModel</span></code> class:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">summary()</span></code> for a model summary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">predict</span></code> for predictions on new data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_r2()</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_adj_r2()</span></code>, <code class="docutils literal notranslate"><span class="pre">information_criteria()</span></code> for model diagnostics</p></li>
+</ul>
 <p>See documentation on <code class="docutils literal notranslate"><span class="pre">variable_selection</span></code> submodule for variable selection techniques, and the <code class="docutils literal notranslate"><span class="pre">OLS_Inference</span></code> class for inference techniques.</p>
 <p>See the examples section of this documentation, or <code class="docutils literal notranslate"><span class="pre">demo.py</span></code> in the source code, for full implementation examples.</p>
 </section>
