@@ -8,11 +8,13 @@ Full source code, README and wiki is available at the repository https://github.
 Usage
 =====
 General usage philosophy is as follows:
+
 1. Select a model from `OLSModel`, `WLSModel`, `RidgeModel` or `Aggregator`. These all inherit from parent class `RegressionModel`.
 2. Initialise model object with data, for example `ols = OLSModel(X,y)`
 3. Fit model with `ols.fit()`
 
 From this point, certain methods are common to all models, inheriting from the ``RegressionModel`` class:
+
 * ``summary()`` for a model summary
 * ``predict`` for predictions on new data
 * ``compute_r2()``, ``compute_adj_r2()``, ``information_criteria()`` for model diagnostics
